@@ -2,14 +2,23 @@ import React,{Component} from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity, Text , Image} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
+
  
 export default class Sobre extends Component{
+    
+  constructor(props){
+    super(props)
+    this.irColeta = this.irColeta.bind(this)
+}
+irColeta(){
+    this.props.navigation.navigate("Coleta")
+}
     render(){
         return(
     <View style={styles.container}>
 
       <LinearGradient
-    style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 900,}}
+    style={{ position: 'absolute', left: 0, right: 0, top: 0, height: '1000',}}
 
      start={{x:1, y:0, }}
 
@@ -21,8 +30,11 @@ export default class Sobre extends Component{
       <Animatable.Image  animation= "flipInY" style={styles.logo} source={require('../../imagens/oleotech01.png')}
          />
 
-          {/* <Text style = {styles.texto}>Bem Vindo!</Text> */}
 
+
+          <Animatable.View delay={600} animation="fadeInUp" style={styles.conteudo}>
+           <TouchableOpacity onPress={this.irColeta}>
+            
           <LinearGradient
           style={{justifyContent:'center' , width:220 , height:220 , borderRadius:8}}
 
@@ -33,13 +45,10 @@ export default class Sobre extends Component{
            colors={['#FFF831','#ABC6E5']}
 
           />
-
-          <Animatable.View delay={600} animation="fadeInUp" style={styles.conteudo}>
-           <TouchableOpacity>
-            <Image style={styles.fornecedor} source={require('../../imagens/Fornecedor.png')}>
-            </Image>
+           <Image style={styles.fornecedor} source={require('../../imagens/Fornecedor.png')}>
+            </Image> 
           </TouchableOpacity>
-          <Text style={styles.texto}>Bem Vindo Fornecedor</Text>
+             <Text style={styles.texto}>Bem Vindo Fornecedor</Text>  
           </Animatable.View>
 
         
@@ -71,14 +80,19 @@ texto:{
     fontWeight:'bold',
     fontSize:18,
     color:'black',
-    marginTop:-30,
+    marginTop:12,   
     textAlign:'center'
+},
+ponto:{
+ marginTop:-65,
+
 },
 fornecedor:{
     width:210,
     height:180,
     marginTop:-226,
-}
+},
+
 
 })
 
