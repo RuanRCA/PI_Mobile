@@ -1,17 +1,11 @@
 import React,{Component} from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity, Text , Image} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable'
 
-export default class Home extends Component {
+export default function Home () {
 
-constructor(props){
-    super(props)
-    this.irSobre = this.irSobre.bind(this)
-}
-irSobre(){
-    this.props.navigation.navigate("Sobre")
-}
-  render(){
+const navigation = useNavigation();
   return (
       <View style={styles.container}>
  
@@ -40,7 +34,7 @@ irSobre(){
         <Text style={styles.Text}>Esqueceu sua senha? clique aqui</Text>
       </TouchableOpacity>
  
-      <TouchableOpacity style={styles.Button} onPress={this.irSobre}>
+      <TouchableOpacity style={styles.Button} onPress={()=>navigation.navigate('Sobre')}>
         <Text>Entrar</Text>
       </TouchableOpacity>
  
@@ -55,7 +49,7 @@ irSobre(){
   )
 }
 
- }
+
  
 const styles = StyleSheet.create({
   container: {

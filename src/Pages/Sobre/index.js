@@ -1,19 +1,13 @@
 import React,{Component} from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity, Text , Image} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 
  
-export default class Sobre extends Component{
+export default function Sobre(){
     
-  constructor(props){
-    super(props)
-    this.irColeta = this.irColeta.bind(this)
-}
-irColeta(){
-    this.props.navigation.navigate("Coleta")
-}
-    render(){
+ const navigation = useNavigation();
         return(
     <View style={styles.container}>
 
@@ -33,7 +27,7 @@ irColeta(){
 
 
           <Animatable.View delay={600} animation="fadeInUp" style={styles.conteudo}>
-           <TouchableOpacity onPress={this.irColeta}>
+           <TouchableOpacity onPress={()=> navigation.navigate('Coleta')}>
             
           <LinearGradient
           style={{justifyContent:'center' , width:220 , height:220 , borderRadius:8}}
@@ -57,7 +51,7 @@ irColeta(){
            
         )
     }
-}
+
 
 const styles = StyleSheet.create({
 

@@ -1,16 +1,23 @@
 import React,{Component} from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity, Text , Image , Button} from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 
-export default class Coleta extends Component{
- render(){
+
+export default function Coleta (){
+  const navigation = useNavigation();
+  const litro1 = '1 Litro';
+  const litro2 = '2 Litros';
+  const litro5 = '5 Litros';
+  const litro20 = '20 Litros';
+  
   return (
     <View style={styles.container}>
 
         <LinearGradient
-          style={{ position: 'absolute', left: 0, right: 0, top: 0, height: '900',}}
+          style={{ position: 'absolute', left: 0, right: 0, top: 0, height: '980',}}
       
             start={{x:1, y:0,}}
  
@@ -24,10 +31,10 @@ export default class Coleta extends Component{
 
     <View style= {styles.Oleos}>
 
-    <TouchableOpacity style={styles.Botao1}>
+         <TouchableOpacity style={styles.Botao1} onPress={()=> navigation.navigate('Mapa' , {mensagem:litro1})}>
 
      <LinearGradient
-     style={{justifyContent:'center' , width:120 , height:110 , borderRadius:8 , left:20 , borderColor:'white'}}
+     style={{  width:120 , height:110 , borderRadius:8 , left:20 , borderColor:'white'}}
      
            start={{x:1, y:0, }}
 
@@ -38,11 +45,13 @@ export default class Coleta extends Component{
     <Image style={styles.Oleo1} source={require('../../imagens/oleo01.png')}/>
     <Text style={styles.texto1}>1 Litro 1000ML</Text>
     </TouchableOpacity>
+    
+  
 
-
-    <TouchableOpacity style={styles.botao2}>
+   
+    <TouchableOpacity style={styles.botao2} onPress={()=> navigation.navigate('Mapa',{mensagem:litro2})}>
      <LinearGradient
-     style={{justifyContent:'center' , width:120 , height:110 , borderRadius:8 , left:275 , borderColor:'white', marginTop:-130 , borderColor:'white'}}
+     style={{ width:120 , height:110 , borderRadius:8 , left:275 , borderColor:'white', marginTop:-130 , borderColor:'white'}}
      
            start={{x:1, y:0, }}
 
@@ -56,10 +65,12 @@ export default class Coleta extends Component{
      <Text style={styles.texto2}>2 Litros 2000ML</Text>
       
     
-     <TouchableOpacity style={styles.Botao3}>
+   
+    
+     <TouchableOpacity style={styles.Botao3} onPress={()=> navigation.navigate('Mapa' , {mensagem:litro5})}>
 
      <LinearGradient
-     style={{justifyContent:'center' , width:120 , height:110 , borderRadius:8 , left:20 , borderColor:'white', marginTop:50}}
+     style={{ width:120 , height:110 , borderRadius:8 , left:20 , borderColor:'white', marginTop:50}}
      
            start={{x:1, y:0, }}
 
@@ -72,9 +83,9 @@ export default class Coleta extends Component{
  
  <Text style={styles.texto3}>5 Litros 5000ML</Text>
 
- <TouchableOpacity>
+ <TouchableOpacity styles={styles.botao4} onPress={()=> navigation.navigate('Mapa' , {mensagem:litro20})}>
    <LinearGradient
-     style={{justifyContent:'center' , width:120 , height:110 , borderRadius:8 , left:275 , borderColor:'white', marginTop:-130 , borderColor:'white'}}
+     style={{ width:120 , height:110 , borderRadius:8 , left:275 , borderColor:'white', marginTop:-130 , borderColor:'white'}}
      
            start={{x:1, y:0, }}
 
@@ -90,7 +101,7 @@ export default class Coleta extends Component{
    <TextInput style={styles.Quantidade} placeholder='Digite a quantidade de ML' placeholderTextColor='#fff'>
   </TextInput>
  
- <TouchableOpacity style={styles.Coletar}>
+ <TouchableOpacity style={styles.Coletar} onPress={()=>navigation.navigate('Mapa')}>
   <Text style={styles.textoColetar}>Coletar</Text>
  </TouchableOpacity>
 
@@ -104,13 +115,17 @@ export default class Coleta extends Component{
     </View>
   );
 }
-}
+
 
 const styles = StyleSheet.create({
 
 
  container: {   
     flex: 1,
+  },
+
+  oleo2:{
+  flex:1
   },
 
   logo:{
