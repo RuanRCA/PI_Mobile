@@ -1,0 +1,89 @@
+import React, { useState } from 'react';
+import { View, Text, Button, StyleSheet , TouchableOpacity , Image } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+
+export default function Codigo() {
+  const [numeros, setNumeros] = useState([]);
+
+  const gerarNumeros = () => {
+    const novosNumeros = [];
+    while (novosNumeros.length < 6) {
+      const numero = Math.floor(Math.random() * 9) + 1;
+      if (!novosNumeros.includes(numero)) {
+        novosNumeros.push(numero);
+      }
+    }
+     setNumeros(novosNumeros);
+  };
+
+  return (
+    <View style={styles.container}>
+         <Image style={styles.logo} source={require('../../imagens/oleotech01.png')}>
+            </Image>
+      <Text style={styles.title}>Código Da Coleta</Text>
+      <View style={styles.numerosContainer}>
+        {numeros.map((num, index) => (
+          <Text key={index} style={styles.numero}>{num}</Text>
+        ))}
+      </View>
+    <TouchableOpacity style={styles.button} onPress={gerarNumeros}>
+     <Text style={styles.codigo}>Código</Text>
+    </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#98FB98',
+  },
+  logo:{
+     width:350,
+    height:350,
+    alignSelf:'center',
+    marginTop:-50
+     
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 50,
+     fontWeight:'bold',
+  },
+  numerosContainer: {
+    flexDirection: 'row',
+    marginBottom: 50,
+    backgroundColor:'#00FF00',
+    borderRadius:8,
+    height:120,
+    
+  },
+  numero: {
+    fontSize: 50,
+    marginHorizontal: 5,
+    padding: 10,
+    fontWeight:'bold',
+    borderRadius: 5,
+    textAlign:'center'
+  },
+
+  button:{
+      padding:20,
+     width:130,
+     alignItems:'center',
+     alignSelf:'center',
+     borderRadius:10,
+     borderColor:'black',
+     height:70,
+     backgroundColor:'#04b6f6ff',
+     margin:5,
+     
+  },
+
+  codigo:{
+    fontWeight:'bold',
+     fontSize:20
+  }
+});

@@ -109,9 +109,11 @@ import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function App() {
   const [location, setLocation] = useState(null);
+   const navigation = useNavigation();
   // const route = useRoute();
   // const { mensagem } = route.params;
 
@@ -167,7 +169,7 @@ export default function App() {
                  
                  
 
-                  <TouchableOpacity style={styles.codigo}>
+                  <TouchableOpacity style={styles.codigo} onPress={()=> navigation.navigate('Codigo')}>
                     <Text style={styles.texto}>Código</Text>
                   </TouchableOpacity>
 
