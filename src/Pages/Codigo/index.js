@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet , TouchableOpacity , Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Codigo() {
   const [numeros, setNumeros] = useState([]);
-
+   const navigation = useNavigation();
   const gerarNumeros = () => {
     const novosNumeros = [];
     while (novosNumeros.length < 6) {
@@ -29,6 +30,10 @@ export default function Codigo() {
     <TouchableOpacity style={styles.button} onPress={gerarNumeros}>
      <Text style={styles.codigo}>Código</Text>
     </TouchableOpacity>
+     
+     <TouchableOpacity style = {styles.Finalizar} onPress={()=>navigation.navigate('Agradecimento')}>
+        <Text style = {styles.texto}>Finalizar</Text>
+     </TouchableOpacity>
     </View>
   );
 }
@@ -44,17 +49,17 @@ const styles = StyleSheet.create({
      width:350,
     height:350,
     alignSelf:'center',
-    marginTop:-50
+    marginTop:-120
      
   },
   title: {
     fontSize: 24,
-    marginBottom: 50,
+    marginBottom: 40,
      fontWeight:'bold',
   },
   numerosContainer: {
     flexDirection: 'row',
-    marginBottom: 50,
+    marginBottom: 40,
     backgroundColor:'#00FF00',
     borderRadius:8,
     height:120,
@@ -77,13 +82,35 @@ const styles = StyleSheet.create({
      borderRadius:10,
      borderColor:'black',
      height:70,
-     backgroundColor:'#04b6f6ff',
-     margin:5,
+     backgroundColor:'#0eeff3ff',
+     margin:15,
      
   },
 
   codigo:{
     fontWeight:'bold',
      fontSize:20
+  } , 
+
+  Finalizar:{
+      padding:25,
+     width:230,
+     alignItems:'center',
+     alignSelf:'center',
+     borderRadius:10,
+     borderColor:'black',
+     height:80,
+     backgroundColor:'#00ffd0ff',
+     margin:25,
+  },
+
+  texto:{
+     fontWeight:'bold',
+     fontSize:20
   }
+
+
 });
+
+
+
