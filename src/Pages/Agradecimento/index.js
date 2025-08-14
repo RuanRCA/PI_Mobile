@@ -38,9 +38,9 @@ useEffect(()=>{
               
                     start={{x:1, y:0,}}
          
-                    end={{ x:0, y:1,}}
+                    end={{ x:1, y:1,}}
          
-                   colors={['	#00BFFF'   ,'#E0FFFF']}
+                   colors={['#00BFFF'  ,'#0000CD']}
                     />
      <Text style={styles.texto}>Muito Obrigado!</Text>
       <TouchableOpacity onPress={()=> setSave(!save)}>

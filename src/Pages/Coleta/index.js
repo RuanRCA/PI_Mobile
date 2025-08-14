@@ -26,8 +26,8 @@ export default function Coleta (){
            colors={['#00BFFF'   ,'#F0F8FF']}
             />
 
-    <Image style={styles.logo} source={require('../../imagens/oleotech01.png')}>
-    </Image>
+    {/* <Image style={styles.logo} source={require('../../imagens/oleotech01.png')}>
+    </Image> */}
 
     <View style= {styles.Oleos}>
 

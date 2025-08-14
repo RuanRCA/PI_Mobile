@@ -114,8 +114,8 @@ import { useNavigation } from '@react-navigation/native';
 export default function App() {
   const [location, setLocation] = useState(null);
    const navigation = useNavigation();
-  // const route = useRoute();
-  // const { mensagem } = route.params;
+  const route = useRoute();
+  //  const { mensagem } = route.params;
 
   useEffect(() => {
     (async () => {
@@ -157,14 +157,14 @@ export default function App() {
                    colors={['#cdeffaff'   ,'#54b1feff']}
                     /> */}
               
-              <Image style={styles.logo} source={require('../../imagens/oleotech01.png')}>
-                  </Image>
+              {/* <Image style={styles.logo} source={require('../../imagens/oleotech01.png')}>
+                  </Image> */}
 
                   <Text style={styles.texto}>Endereço</Text>
 
-                   <Text style={styles.endereco}>Av. Agostinho Ferreira, 1398 Ribeirópolis - Praia Grande SP</Text>  
+                   <Text style={styles.endereco}>Av. Agostinho Ferreira, 1398 Ribeirópolis - Praia Grande SP</Text>   
 
-                  {/* <Text>{mensagem}</Text> */}
+                   {/* <Text>{mensagem}</Text>  */}
 
                  
                  

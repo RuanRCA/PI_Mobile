@@ -19,8 +19,8 @@ export default function Codigo() {
 
   return (
     <View style={styles.container}>
-         <Image style={styles.logo} source={require('../../imagens/oleotech01.png')}>
-            </Image>
+         {/* <Image style={styles.logo} source={require('../../imagens/oleotech01.png')}>
+            </Image> */}
       <Text style={styles.title}>Código Da Coleta</Text>
       <View style={styles.numerosContainer}>
         {numeros.map((num, index) => (
