@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet , TouchableOpacity , Image } from 'react-native';
+import { View, Text, Button, StyleSheet , TouchableOpacity , Image ,ImageBackground} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Codigo() {
   const [numeros, setNumeros] = useState([]);
+  const [visible , setvisible] = useState(true);
    const navigation = useNavigation();
   const gerarNumeros = () => {
     const novosNumeros = [];
@@ -15,35 +16,57 @@ export default function Codigo() {
       }
     }
      setNumeros(novosNumeros);
+     trocarVisibilidade();
+     
   };
+ 
+  function trocarVisibilidade(){
+   setvisible(!visible);
+  }
 
   return (
     <View style={styles.container}>
+      <ImageBackground style={styles.background} source={require('../../imagens/fundo02.png')}>
+
+    
          {/* <Image style={styles.logo} source={require('../../imagens/oleotech01.png')}>
             </Image> */}
-      <Text style={styles.title}>Código Da Coleta</Text>
+   <Image style={styles.codigoColeta} source={require('../../imagens/Codigo-Coleta.png')}></Image>
+
+   <View style={styles.card}>
       <View style={styles.numerosContainer}>
         {numeros.map((num, index) => (
           <Text key={index} style={styles.numero}>{num}</Text>
+          
         ))}
-      </View>
-    <TouchableOpacity style={styles.button} onPress={gerarNumeros}>
-     <Text style={styles.codigo}>Código</Text>
-    </TouchableOpacity>
-     
-     <TouchableOpacity style = {styles.Finalizar} onPress={()=>navigation.navigate('Agradecimento')}>
+        <TouchableOpacity style = {styles.Finalizar} onPress={()=>navigation.navigate('Agradecimento')}>
         <Text style = {styles.texto}>Finalizar</Text>
      </TouchableOpacity>
+        </View>
+   </View>
+     
+    
+
+       {visible &&(
+        <TouchableOpacity style={styles.button} onPress={gerarNumeros}>
+        <Text style={styles.codigo}>Código</Text>
+         </TouchableOpacity>
+        )}
+ 
+     
+     
+       </ImageBackground>
     </View>
+    
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#98FB98',
+  },
+  background:{
+    flex:1
   },
   logo:{
      width:350,
@@ -59,14 +82,26 @@ const styles = StyleSheet.create({
   },
   numerosContainer: {
     flexDirection: 'row',
+    alignItems:'center',
+    justifyContent:'center',
     marginBottom: 40,
-    backgroundColor:'#00FF00',
+    backgroundColor:'#d01818ff',
+
     borderRadius:8,
-    height:120,
+    height:320,
+    width:360,
+    borderRadius:18
     
   },
+
+  card:{
+     backgroundColor:'#1B63C5',
+     marginTop:118,
+  
+
+  },
   numero: {
-    fontSize: 50,
+    fontSize: 30,
     marginHorizontal: 5,
     padding: 10,
     fontWeight:'bold',
@@ -93,15 +128,7 @@ const styles = StyleSheet.create({
   } , 
 
   Finalizar:{
-      padding:25,
-     width:230,
-     alignItems:'center',
-     alignSelf:'center',
-     borderRadius:10,
-     borderColor:'black',
-     height:80,
-     backgroundColor:'#00ffd0ff',
-     margin:25,
+    
   },
 
   texto:{

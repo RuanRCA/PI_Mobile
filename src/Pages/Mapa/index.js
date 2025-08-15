@@ -170,7 +170,7 @@ export default function App() {
                  
 
                   <TouchableOpacity style={styles.codigo} onPress={()=> navigation.navigate('Codigo')}>
-                    <Text style={styles.texto}>Código</Text>
+                    <Text style={styles.textobutton}>Código</Text>
                   </TouchableOpacity>
 
 
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   map:
    { flex:1,
-    //  height: Dimensions.get('window').height * 0.5, // 50% da altura da tela
+    // height: Dimensions.get('window').height * 0.5, // 50% da altura da tela
     width: '100%',
     
     },
@@ -195,9 +195,10 @@ const styles = StyleSheet.create({
       bottomHalf: {
     flex: 1,
     // backgroundColor: '#DCDCDC',
-    backgroundColor:'	#F0F8FF',
+    backgroundColor:'#BEBEBE',
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius:28
   },
 
   logo:{
@@ -213,21 +214,26 @@ const styles = StyleSheet.create({
     textAlign:'center'
    
   },
-  texto:{
+  textobutton:{
     fontWeight:'bold',
     fontSize:19,
     textAlign:'auto',
-
+    color:'#1B63C5'
   },
+  texto:{
+   fontWeight:'bold',
+   fontSize:19,
+  },
+
   codigo:{
-    padding:20,
-     width:120,
-     alignItems:'center',
-     alignSelf:'center',
-     borderRadius:10,
-     borderColor:'black',
-     height:70,
-     backgroundColor:'#4367F4',
-     marginTop:17
+   backgroundColor:"#EFC91D",
+   textAlign:'center',
+   margin:20,
+    padding:15,
+      borderRadius:25,
+      width:180,
+      // margin:25,
+      // marginLeft:110,
+      alignItems:'center'
   },
 });
