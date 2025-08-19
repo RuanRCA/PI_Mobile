@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
    },
 
 coletas:{
-  marginLeft:172,
-  marginTop:85
+  marginLeft:152,
+  marginTop:65
 },
 
 litro1:{

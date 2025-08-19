@@ -39,22 +39,19 @@ export default function Codigo() {
           <Text key={index} style={styles.numero}>{num}</Text>
           
         ))}
-        <TouchableOpacity style = {styles.Finalizar} onPress={()=>navigation.navigate('Agradecimento')}>
-        <Text style = {styles.texto}>Finalizar</Text>
-     </TouchableOpacity>
-        </View>
-   </View>
-     
     
+        </View>
 
-       {visible &&(
+           {visible &&(
         <TouchableOpacity style={styles.button} onPress={gerarNumeros}>
         <Text style={styles.codigo}>Código</Text>
          </TouchableOpacity>
         )}
- 
-     
-     
+            <TouchableOpacity style = {styles.Finalizar} onPress={()=>navigation.navigate('Agradecimento')}>
+        <Text style = {styles.texto}>Finalizar</Text>
+     </TouchableOpacity>
+
+   </View>
        </ImageBackground>
     </View>
     
@@ -68,11 +65,16 @@ const styles = StyleSheet.create({
   background:{
     flex:1
   },
+
+  codigoColeta:{
+   marginTop:68,
+   marginLeft:10
+  },
   logo:{
      width:350,
     height:350,
     alignSelf:'center',
-    marginTop:-120
+    marginTop:-130
      
   },
   title: {
@@ -85,24 +87,32 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center',
     marginBottom: 40,
-    backgroundColor:'#d01818ff',
-
+     backgroundColor:'#fff',
     borderRadius:8,
-    height:320,
-    width:360,
+    marginLeft:75,
+    height:90,
+    width:200,
     borderRadius:18
     
   },
 
   card:{
      backgroundColor:'#1B63C5',
-     marginTop:118,
+     marginTop:258,
+    //  borderWidth:2,
+     marginLeft:25,
+     justifyContent:'center',
+     width:350,
+     height:350,
+     borderRadius:10,
+     elevation:4,
   
 
   },
+
   numero: {
-    fontSize: 30,
-    marginHorizontal: 5,
+    fontSize: 20,
+    marginHorizontal: 1,
     padding: 10,
     fontWeight:'bold',
     borderRadius: 5,
@@ -110,21 +120,22 @@ const styles = StyleSheet.create({
   },
 
   button:{
-      padding:20,
+     padding:20,
      width:130,
      alignItems:'center',
      alignSelf:'center',
      borderRadius:10,
      borderColor:'black',
      height:70,
-     backgroundColor:'#0eeff3ff',
+    backgroundColor:"#EFC91D",
      margin:15,
      
   },
 
   codigo:{
     fontWeight:'bold',
-     fontSize:20
+     fontSize:20,
+     color:'#1B63C5'
   } , 
 
   Finalizar:{
@@ -138,6 +149,3 @@ const styles = StyleSheet.create({
 
 
 });
-
-
-

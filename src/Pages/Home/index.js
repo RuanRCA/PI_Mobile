@@ -1,4 +1,3 @@
-
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ScrollView ,ImageBackground } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
@@ -72,10 +71,10 @@ flex:1
 
 logo: {
    width: 140,
-    height:150,
+    height:130,
     // margin:20,
-     paddingRight:267,
-    margin:135
+     paddingRight:257,
+    margin:115
    },
 
    input:{
