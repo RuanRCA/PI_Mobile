@@ -20,43 +20,16 @@ export default function Coleta (){
         <ImageBackground style = {styles.Background} source={require('../../imagens/Fundo01.png')}>
         <Image style ={styles.coletas} source={require('../../imagens/Coletas.png')}></Image>
         
-        <TouchableOpacity onPress={()=> navigation.navigate('Mapa' , {mensagem:litro1})}>
-           <Icon name='tint' size={92} color="#EFC91D" marginLeft={55} marginTop={155} />
-        </TouchableOpacity>
-
-        <Text style={styles.litro1}>1 Litro</Text>
-        <Text style={styles.ml1000}>1000Ml</Text>
-
-         <TouchableOpacity onPress={()=> navigation.navigate('Mapa' , {mensagem:litro2})}>
-           <Icon name='tint' size={92} color="#EFC91D" marginLeft={275} marginTop={-158} />
-        </TouchableOpacity>
-
-         <Text style={styles.litro2}>2 Litros</Text>
-        <Text style={styles.ml2000}>2000Ml</Text>
-
-        <TouchableOpacity onPress={()=> navigation.navigate('Mapa' , {mensagem:litro5})}>
-           <Icon name='tint' size={92} color="#EFC91D" marginLeft={55} marginTop={30} />
-        </TouchableOpacity>
-
-          <Text style={styles.litro1}>5 Litros</Text>
-        <Text style={styles.ml1000}>5000Ml</Text>
-
-         <TouchableOpacity onPress={()=> navigation.navigate('Mapa' , {mensagem:litro20})}>
-           <Icon name='tint' size={92} color="#EFC91D" marginLeft={275} marginTop={-160} />
-        </TouchableOpacity>
-
-
-      <Text style={styles.litro20}>20 Litros</Text>
-        <Text style={styles.vinte}>20.000Ml</Text>
-
-        <TextInput style={{ fontSize: 18, fontWeight:'bold',  borderRadius:25,   margin:35,   textAlign:'center', backgroundColor:'#fff'}}
+      
+     <Text style = {styles.texto1}>Informe a quantidade de óleo que você deseja descartar </Text>
+        <TextInput style={{ fontSize: 18, fontWeight:'bold',  borderRadius:25,   margin:25,   textAlign:'center', backgroundColor:'#fff'}}
         placeholder="Digite Aquantidade Ml"
             placeholderTextColor="#1B63C5"
         >
         
         </TextInput>
 
-        <TouchableOpacity style={styles.coletar} onPress={()=> navigation.navigate('Mapa')}>
+        <TouchableOpacity style={styles.coletar} onPress={()=> navigation.navigate('Locais')}>
           <Text style = {styles.textColetar}>Coletar</Text>
         </TouchableOpacity>
 
@@ -80,6 +53,13 @@ const styles = StyleSheet.create({
 
   Background:{
   flex:1
+   },
+
+   texto1:{
+  padding:95,
+  fontSize:18,
+  fontWeight:'bold',
+  color:'#fff'
    },
 
 coletas:{
