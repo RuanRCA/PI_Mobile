@@ -111,7 +111,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function App() {
+export default function Mapa() {
   const [location, setLocation] = useState(null);
    const navigation = useNavigation();
   const route = useRoute();
@@ -169,7 +169,7 @@ export default function App() {
                  
                  
 
-                  <TouchableOpacity style={styles.codigo} onPress={()=> navigation.navigate('Codigo')}>
+                  <TouchableOpacity style={styles.codigo} onPress={()=> navigation.navigate('Agradecimento')}>
                     <Text style={styles.textobutton}>Código</Text>
                   </TouchableOpacity>
 

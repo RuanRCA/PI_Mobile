@@ -1,5 +1,5 @@
-import React,{Component} from 'react';
-import { StyleSheet, TextInput, View, TouchableOpacity, Text , Image , Button , ImageBackground} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, TextInput, View, TouchableOpacity, Text , Image , Button , ImageBackground , FlatList} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -8,12 +8,34 @@ import Icon from'@expo/vector-icons/FontAwesome5';
 
 
 
-export default function Coleta (){
+export default function Locais(){
   const navigation = useNavigation();
-  const litro1 = '1 Litro';
-  const litro2 = '2 Litros';
-  const litro5 = '5 Litros';
-  const litro20 = '20 Litros';
+  const [empresa, setEmpresa] = useState([]);
+  const [nome, setNome] = useState('');
+  const [cep, setCep] = useState('');
+  const [nome_local , setNome_Local] = useState('');
+   const [loading, setLoading] = useState(false);
+
+   
+
+   const buscarEmpresas = async () => {
+ setLoading(true);
+ try {
+ const response = await fetch('http://192.168.56.1/api_oleotech/oleotech.php');
+ const data = await response.json();
+ setEmpresa(data);
+ } catch (error) {
+ Alert.alert('Erro', 'Não foi possível carregar as pessoas. Verifique sua API e o IP.');
+ console.error(error);
+ } finally {
+ setLoading(false);
+ }
+ };
+
+ useEffect(() => {
+ buscarEmpresas();
+ }, []);
+
   
   return (
       <View style={styles.container}>
@@ -21,7 +43,23 @@ export default function Coleta (){
         <Image style ={styles.logo} source={require('../../imagens/locais_coleta.png')}></Image>
         
       
-    
+    <FlatList
+ data={empresa}
+ keyExtractor={(item) => item. id_empresa.toString()}
+ renderItem={({ item }) => (
+ <View style={styles.listaEmpresa} >
+ <Text style={styles.textoNome} >Ponto de Coleta : {item.nome}</Text>
+  <Text style={styles.Cep}>Cep: {item.cep}</Text>
+ <Text style={styles.textoLocalidade} >Localidade: {item.nome_local}</Text> 
+
+ <TouchableOpacity style={styles.buttomRota} onPress={() => navigation.navigate('Mapa')}>
+  <Text style={styles.textoRota}>Ver Rota</Text>
+ </TouchableOpacity>
+
+ </View>
+ )}
+ ListEmptyComponent={<Text style={styles.listaVazia}>Nenhuma empresa por perto.</Text>}
+ />
 
   
         </ImageBackground>
@@ -52,82 +90,61 @@ const styles = StyleSheet.create({
   flex:1
    },
 
-   texto1:{
-  padding:95,
-  fontSize:18,
-  fontWeight:'bold',
-  color:'#fff'
+   listaEmpresa:{
+   backgroundColor: '#fff',
+ padding: 25,
+ borderRadius: 8,
+ marginBottom: 30,
+ elevation:10,
+ width:355,
+ marginLeft:23,
+ flexDirection: 'column',
+  justifyContent: 'space-between',
+ borderWidth: 1,
+ borderColor: '#eee',
+
+
    },
 
-coletas:{
-  marginLeft:152,
-  marginTop:65
-},
-
-litro1:{
-  margin:5,
-  marginLeft:58,
-  color:'#fff',
-  fontWeight:'bold',
-  fontSize:18
-},
-
-ml1000:{
-    marginLeft:58,
-    color:'#fff',
-    fontWeight:'bold',
-     fontSize:18
-},
-litro2:{
-    margin:5,
-   marginLeft:275,
-  color:'#fff',
-  fontWeight:'bold',
-  fontSize:18,
-  marginTop:-60
-},
-
-ml2000:{
- marginLeft:275,
-  color:'#fff',
-    fontWeight:'bold',
-     fontSize:18
-
-},
-
-litro20:{
-     margin:5,
-   marginLeft:275,
-  color:'#fff',
-  fontWeight:'bold',
-  fontSize:18,
-   marginTop:-60
-},
-
-vinte:{
- 
-   color:'#fff',
-    fontWeight:'bold',
-     fontSize:18,
-     marginLeft:275
-},
-
-coletar:{
-  backgroundColor:"#EFC91D",
+   textoNome:{
+   fontWeight:'bold',
+   color:'#1B63C5',
+   margin:10,
+   fontSize:18,
    textAlign:'center',
-    padding:10,
-      borderRadius:25,
-      width:180,
-      // margin:25,
-      marginLeft:110,
-      alignItems:'center'
-},
+   marginTop:-25,
+   },
 
-textColetar:{
-fontWeight:'bold',
-fontSize:18,
-color:'#1B63C5',
-}
+   Cep:{
+   fontWeight:'bold',
+   fontSize:16,
+   color:'#000',
+    margin:4,
+    },
+
+   textoLocalidade:{
+    fontWeight:'bold',
+   fontSize:16,
+   color:'#000',
+    margin:4,
+   },
+
+   buttomRota:{
+   padding:10,
+     width:115,
+     alignItems:'center',
+     borderRadius:10,
+    backgroundColor:"#1B63C5",
+     margin:15,
+     marginLeft:180
+   },
+
+   textoRota:{
+  color:'#fff',
+  fontWeight:'bold',
+  fontSize:16,
+   },
+
 
 
 })
