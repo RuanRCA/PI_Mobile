@@ -170,7 +170,7 @@ export default function Mapa() {
                  
 
                   <TouchableOpacity style={styles.codigo} onPress={()=> navigation.navigate('Agradecimento')}>
-                    <Text style={styles.textobutton}>Código</Text>
+                    <Text style={styles.textobutton}>Finalizar</Text>
                   </TouchableOpacity>
 
 

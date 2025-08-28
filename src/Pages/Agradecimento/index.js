@@ -1,11 +1,13 @@
 
 import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import LottieView from 'lottie-react-native';
+import { useNavigation } from '@react-navigation/native';
  
 export default function Agradecimento() {
   const animation = useRef(null);
+  const navigation = useNavigation();
  
 //   useEffect(() => {
 //     if (animation.current) {
@@ -30,6 +32,10 @@ export default function Agradecimento() {
         style={{ width: 450, height: 450 }}
         ref={animation}
       />
+
+      <TouchableOpacity style = {styles.coletor} onPress={()=> navigation.navigate('Coletor')}>
+        <Text style = {styles.textColetor}>Tela Coletor</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -44,4 +50,21 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
   },
+  coletor:{
+     backgroundColor:"#EFC91D",
+   textAlign:'center',
+   margin:20,
+    padding:15,
+      borderRadius:25,
+      width:180,
+      // margin:25,
+      // marginLeft:110,
+      alignItems:'center'
+  },
+  textColetor:{
+     fontWeight:'bold',
+    fontSize:19,
+    textAlign:'auto',
+    color:'#1B63C5'
+  }
 });
