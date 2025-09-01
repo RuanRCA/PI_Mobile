@@ -16,29 +16,29 @@ export default function Coletor(){
    const [loading, setLoading] = useState(false);
 
     const adicionarColeta = async () => {
- if (!cpf.trim() || !quantidade.trim() || empresa.trim() || matricula_coletor.trim()) {
- Alert.alert('Atenção', 'Por favor, preencha o nome e a idade.');
- return;
- }
- setLoading(true);
+if (!cpf.trim() || !quantidade.trim() || !empresa.trim() || !matricula_coletor.trim()) {
+  Alert.alert('Atenção', 'Por favor, preencha todos os campos.');
+  return;
+}
+
  
  try {
  const response = await fetch('http://192.168.56.1/api_oleotech/oleotech.php', {
  method: 'POST',
  headers: {
- 'Content-Type': 'application/json',
+ 'Content-Type':'application/json',
  },
- body: JSON.stringify({ cpf: cpf, quantidade: quantidade , empresa: empresa , coletor:matricula_coletor }),
+ body: JSON.stringify({ cpf,  quantidade ,  empresa ,  matricula_coletor }),
  });
  
  const data = await response.json();
+
  if (data.sucesso) {
  // Limpa os campos e busca a lista atualizada
  setCpf('');
  setQuantidade('');
  setEmpresa('');
- setColetor('');
- adicionarColeta();
+ setmatricula_Coletor('');
  } else {
  Alert.alert('Erro', data.mensagem || 'Ocorreu um erro ao adicionar.');
  }
@@ -49,6 +49,13 @@ export default function Coletor(){
  setLoading(false);
  }
  };
+
+
+
+//   useEffect(() => {
+//  adicionarColeta();
+//  }, []);
+
     return(
         <View style = {styles.container} >
             <ImageBackground style = {styles.Background} source={require('../../imagens/fundo02.png')}>
@@ -59,6 +66,7 @@ export default function Coletor(){
               placeholder='CPF' 
               placeholderTextColor='#1B63C5'
               value={cpf}
+               keyboardType="numeric"
                onChangeText={setCpf}
               />
 
@@ -83,7 +91,8 @@ export default function Coletor(){
                <TextInput style={styles.InputColetor}
                 placeholder='Matricula-Coletor' 
                 placeholderTextColor='#1B63C5'
-                value={coletor}
+                value={matricula_coletor}
+                 keyboardType="numeric"
                  onChangeText={setmatricula_Coletor}
                 />
 
