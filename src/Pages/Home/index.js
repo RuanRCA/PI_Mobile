@@ -1,15 +1,88 @@
+
+import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ScrollView ,ImageBackground } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 
 
  
 export default function Home() {
 
   const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [login , setLogin] = useState([]);
+const [carregando, setCarregando] = useState(false);
+
+ const  fazerLogin = async()=> {
+  if (!email.trim() || !senha.trim()) {
+    Alert.alert('Erro', 'Preencha todos os campos');
+    return;
+  }
+
+  setCarregando(true);
+
+  try{
+     const response = await  fetch('http://192.168.56.1/api_oleotech/login.php' ,{
+    method: 'POST',
+   headers: {
+ 'Content-Type': 'application/json',
+ },
+  body: JSON.stringify({ email: email, senha: senha }),
+});
+
+      const data = await response.json();
+// console.log('Resposta bruta:', data);
+
+
+
+       if (data.sucesso) {
+         if (data.tipo=== 'coletor') {
+           navigation.navigate('Coletor');
+        } else if (data.tipo === 'cliente') {
+          navigation.navigate('Sobre');
+         }
+      } else {
+        Alert.alert('Erro', data.mensagem);
+      }
+
+  }
+
+    catch (error) {
+ Alert.alert('Erro', 'Não foi possível conectar ao servidor');
+ console.error(error);
+ } 
+//  const response = await  fetch('http://192.168.56.1/api_oleotech/login.php', 
+//   //   method: 'POST',
+//   //   headers: { 'Content-Type': 'application/json' },
+//   //   body: JSON.stringify({ email, senha }),
+//   // })
+//   //   .then(response => response.json())
+//   //   .then(resultado => {
+//   //     setCarregando(false);
+
+//   //     if (resultado.sucesso) {
+//   //       if (resultado.tipo === 'coletor') {
+//   //         navigation.navigate('Coletor');
+//   //       } else if (resultado.tipo === 'cliente') {
+//   //         navigation.navigate('Sobre');
+//   //       }
+//   //     } else {
+//   //       Alert.alert('Erro', resultado.mensagem);
+//   //     }
+//   //   })
+//     .catch(error => {
+//       setCarregando(false);
+//       Alert.alert('Erro', 'Não foi possível conectar ao servidor');
+//     });
+}
 
   return (
    <View style={estilos.container}>
+
+     {carregando && <ActivityIndicator size="large" color="#0000ff" />}
      <ImageBackground style = {estilos.Background} source={require('../../imagens/Fundo01.png')}>
 
      <Image style={estilos.logo} source={require('../../imagens/Logo_Oleotech.png')}></Image>
@@ -20,6 +93,8 @@ export default function Home() {
             placeholder="Email"
             placeholderTextColor="#fff"
             style={estilos.input}
+            value={email}
+          onChangeText={setEmail}
            />
 
             <Image style = {estilos.carta} source={require('../../imagens/email.png')}></Image>
@@ -28,6 +103,9 @@ export default function Home() {
             placeholder="Senha"
             placeholderTextColor="#fff"
             style={estilos.senha}
+             secureTextEntry
+            value={senha}
+            onChangeText={setSenha}
            />
 
            <Image style = {estilos.cadeado} source={require('../../imagens/password.png')}></Image>
@@ -38,7 +116,9 @@ export default function Home() {
 
            <Text style = {estilos.esqueceu}>Esquece a Senha?</Text>
 
-           <TouchableOpacity style={estilos.login} onPress={()=>navigation.navigate('Sobre')}>
+          
+
+           <TouchableOpacity style={estilos.login} onPress={fazerLogin} disabled={carregando}>
             <Text style = {estilos.textlogin}>Login</Text>
            </TouchableOpacity>
 

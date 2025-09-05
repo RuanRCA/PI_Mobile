@@ -33,9 +33,9 @@ export default function Agradecimento() {
         ref={animation}
       />
 
-      <TouchableOpacity style = {styles.coletor} onPress={()=> navigation.navigate('Coletor')}>
+      {/* <TouchableOpacity style = {styles.coletor} onPress={()=> navigation.navigate('Coletor')}>
         <Text style = {styles.textColetor}>Tela Coletor</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity, Text , Image , Button , ImageBackground , FlatList} from 'react-native';
+import { TextInputMask } from 'react-native-masked-text';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from '@expo/vector-icons/Ionicons';
+
 import Icon from'@expo/vector-icons/FontAwesome5';
 
 export default function Coletor(){
@@ -14,6 +16,7 @@ export default function Coletor(){
   const [empresa , setEmpresa] = useState('');
   const [matricula_coletor , setmatricula_Coletor] = useState('')
    const [loading, setLoading] = useState(false);
+   
 
     const adicionarColeta = async () => {
 if (!cpf.trim() || !quantidade.trim() || !empresa.trim() || !matricula_coletor.trim()) {
@@ -65,6 +68,7 @@ if (!cpf.trim() || !quantidade.trim() || !empresa.trim() || !matricula_coletor.t
               <TextInput style={styles.Inputcpf} 
               placeholder='CPF' 
               placeholderTextColor='#1B63C5'
+              type={'cpf'}
               value={cpf}
                keyboardType="numeric"
                onChangeText={setCpf}
@@ -81,20 +85,20 @@ if (!cpf.trim() || !quantidade.trim() || !empresa.trim() || !matricula_coletor.t
                  onChangeText={setQuantidade}
                 />
 
-               <TextInput style={styles.InputEmpresa} 
+               {/* <TextInput style={styles.InputEmpresa} 
                placeholder='Empresa' 
                placeholderTextColor='#1B63C5'
                value = {empresa}
                 onChangeText={setEmpresa}
-               />
+               /> */}
 
-               <TextInput style={styles.InputColetor}
+               {/* <TextInput style={styles.InputColetor}
                 placeholder='Matricula-Coletor' 
                 placeholderTextColor='#1B63C5'
                 value={matricula_coletor}
                  keyboardType="numeric"
                  onChangeText={setmatricula_Coletor}
-                />
+                /> */}
 
               <TouchableOpacity style={styles.cadastrar} onPress={adicionarColeta}>
 
