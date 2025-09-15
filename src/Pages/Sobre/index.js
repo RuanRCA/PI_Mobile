@@ -13,7 +13,7 @@ export default function Sobre(){
          <Animatable.Image delay ={600} animation={"fadeInUp"} style={styles.bemvindo} source={require('../../imagens/Bem_Vindo.png')}/>
 
           <Animatable.View delay={600} animation="fadeInUp" >
-           <TouchableOpacity style={styles.acessar} onPress={()=> navigation.navigate('Coleta')}>
+           <TouchableOpacity style={styles.acessar} onPress={()=> navigation.navigate('Locais')}>
              <Text style={styles.texto}>Acessar</Text>  
           </TouchableOpacity >
             

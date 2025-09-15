@@ -6,7 +6,6 @@ import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 import { ActivityIndicator } from 'react-native';
 
-
  
 export default function Home() {
 
@@ -34,9 +33,10 @@ const [carregando, setCarregando] = useState(false);
 });
 
       const data = await response.json();
+      console.log(data)
 // console.log('Resposta bruta:', data);
 
-
+   setLogin(data)
 
        if (data.sucesso) {
          if (data.tipo=== 'coletor') {
@@ -54,6 +54,8 @@ const [carregando, setCarregando] = useState(false);
  Alert.alert('Erro', 'Não foi possível conectar ao servidor');
  console.error(error);
  } 
+
+ 
 //  const response = await  fetch('http://192.168.56.1/api_oleotech/login.php', 
 //   //   method: 'POST',
 //   //   headers: { 'Content-Type': 'application/json' },
@@ -118,9 +120,13 @@ const [carregando, setCarregando] = useState(false);
 
           
 
-           <TouchableOpacity style={estilos.login} onPress={fazerLogin} disabled={carregando}>
+           {/* <TouchableOpacity style={estilos.login} onPress={fazerLogin} disabled={carregando}>
             <Text style = {estilos.textlogin}>Login</Text>
-           </TouchableOpacity>
+           </TouchableOpacity> */}
+
+                 <TouchableOpacity style={estilos.login} onPress={()=>navigation.navigate('Sobre')}>
+                 <Text style = {estilos.textlogin}>Login</Text>
+              </TouchableOpacity>
 
            <Text style={estilos.ou}>Ou</Text>
 
@@ -130,7 +136,7 @@ const [carregando, setCarregando] = useState(false);
           <Text style={estilos.textoBotaoGoogle}>Entrar com Google</Text>
        </TouchableOpacity>
 
-   <TouchableOpacity style = {estilos.criar}>
+   <TouchableOpacity style = {estilos.criar} onPress={()=>navigation.navigate('Criar')}>
     <Text style ={estilos.textcriar}>Criar uma conta</Text>
    </TouchableOpacity>
 
